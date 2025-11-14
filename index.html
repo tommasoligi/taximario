@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Mario - Servizio Taxi Professionale</title>
+    <style>
+        :root {
+            --primary: #FFD700;
+            --primary-dark: #FFC700;
+            --text-dark: #1a1a1a;
+            --text-light: #555;
+            --bg-light: #f9f9f9;
+            --bg-white: #ffffff;
+            --accent: #FF6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--text-dark);
+            color: var(--primary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #ddd;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-light {
+            background: var(--bg-light);
+        }
+
+        .section-white {
+            background: var(--bg-white);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Features List */
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .feature-check {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .feature-text {
+            color: var(--text-light);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            background: var(--primary);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Fleet Section */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .fleet-card {
+            background: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fleet-image {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 2rem;
+            text-align: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .fleet-info {
+            padding: 1.5rem;
+        }
+
+        .fleet-info h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .fleet-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #eee;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .pricing-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+            color: var(--text-light);
+        }
+
+        .pricing-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-card li:last-child {
+            border: none;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            min-width: 40px;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details p {
+            color: var(--text-light);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--primary);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 2rem;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#home" class="logo">🚕 Taxi Mario</a>
+                <nav>
+                    <ul>
+                        <li><a href="#services">Servizi</a></li>
+                        <li><a href="#fleet">Flotta</a></li>
+                        <li><a href="#pricing">Prezzi</a></li>
+                        <li><a href="#about">Chi Siamo</a></li>
+                        <li><a href="#contact">Contatti</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Benvenuto a Taxi Mario</h1>
+            <p>Servizio taxi professionale, affidabile e sempre puntuale</p>
+            <a href="#contact" class="cta-button">Prenota Ora</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-light" id="about">
+        <div class="container">
+            <h2>Chi Siamo</h2>
+            <div class="about-content">
+                <div class="about-image">🚕</div>
+                <div class="about-text">
+                    <h3>Taxi Mario - Esperienza e Affidabilità</h3>
+                    <p>Taxi Mario è un servizio di trasporto professionale con anni di esperienza nel settore. Siamo dedicati a fornire ai nostri clienti un servizio di qualità superiore con conducenti cortesi e preparati.</p>
+                    <p>La nostra missione è garantire traslazioni sicure, confortevoli e puntuali, adattandoci alle esigenze specifiche di ogni cliente.</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div class="feature-text">Conducenti Professionisti</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div class="feature-text">Veicoli Moderni</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div class="feature-text">Servizio H24</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <div class="feature-text">Prezzi Trasparenti</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-white" id="services">
+        <div class="container">
+            <h2>I Nostri Servizi</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚕</div>
+                    <h3>Trasporti Urbani</h3>
+                    <p>Servizio di trasporto per spostamenti in città. Prenota facilmente il tuo taxi per raggiungere qualsiasi destinazione urbana.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Trasporto Aeroporto</h3>
+                    <p>Servizio dedicato per i trasferimenti da e verso l'aeroporto. Arriverai in orario, comodo e rilassato.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Trasporto Aziendale</h3>
+                    <p>Servizi per aziende e professionisti. Disponibili pacchetti mensili con tariffe speciali.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Gite e Tour</h3>
+                    <p>Organizziamo gite e tour con conducente professionista. Perfetto per gruppi e occasioni speciali.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎉</div>
+                    <h3>Trasporto Matrimoni</h3>
+                    <p>Servizio speciale per matrimoni e eventi importanti. Veicoli eleganti e conduttori cortesi.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌙</div>
+                    <h3>Servizio Notturno</h3>
+                    <p>Disponibile 24 ore su 24, 7 giorni su 7. Puoi contare su di noi in qualsiasi momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section class="section-light" id="fleet">
+        <div class="container">
+            <h2>La Nostra Flotta</h2>
+            <div class="fleet-grid">
+                <div class="fleet-card">
+                    <div class="fleet-image">🚕</div>
+                    <div class="fleet-info">
+                        <h4>Taxi Economico</h4>
+                        <p><strong>Posti:</strong> 4 passeggeri</p>
+                        <p><strong>Ideale per:</strong> Spostamenti brevi e veloci in città</p>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-image">🚙</div>
+                    <div class="fleet-info">
+                        <h4>Taxi Comfort</h4>
+                        <p><strong>Posti:</strong> 4-5 passeggeri</p>
+                        <p><strong>Ideale per:</strong> Trasporti più lunghi con maggior comfort</p>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-image">🚐</div>
+                    <div class="fleet-info">
+                        <h4>Minibus</h4>
+                        <p><strong>Posti:</strong> 6-8 passeggeri</p>
+                        <p><strong>Ideale per:</strong> Gruppi e famiglie numerose</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section-white" id="pricing">
+        <div class="container">
+            <h2>Tariffe</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>Corsa Urbana</h4>
+                    <p class="price">Variabile</p>
+                    <ul>
+                        <li>Prenotazione immediata</li>
+                        <li>Tariffa per km</li>
+                        <li>Senza costi nascosti</li>
+                        <li>Pagamento contanti/Carta</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h4>Trasporto Aeroporto</h4>
+                    <p class="price">Tariffa Fissa</p>
+                    <ul>
+                        <li>Tariffe predefinite</li>
+                        <li>Nessuna sorpresa</li>
+                        <li>Ritardo garantito</li>
+                        <li>Confortevole e puntuale</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h4>Abbonamento Mensile</h4>
+                    <p class="price">Personalizzato</p>
+                    <ul>
+                        <li>Sconto particolare</li>
+                        <li>Prenotazione prioritaria</li>
+                        <li>Conducente dedicato</li>
+                        <li>Fatturazione mensile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-light" id="contact">
+        <div class="container">
+            <h2>Contattaci</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informazioni di Contatto</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Telefono</h4>
+                            <p>+39 XXX XXX XXXX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@taximario.it</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Indirizzo</h4>
+                            <p>Via della Città, 123<br>00100 Roma</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div class="contact-details">
+                            <h4>Orari di Servizio</h4>
+                            <p>24 Ore su 24<br>7 Giorni su 7</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <h3>Mandaci un Messaggio</h3>
+                    <div class="form-group">
+                        <label for="name">Nome *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefono</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Oggetto *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Messaggio *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Invia Messaggio</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Taxi Mario</h4>
+                    <p>Servizio taxi professionale con anni di esperienza nel trasporto passeggeri.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Servizi</h4>
+                    <ul>
+                        <li><a href="#services">Trasporti Urbani</a></li>
+                        <li><a href="#services">Aeroporto</a></li>
+                        <li><a href="#services">Trasporto Aziendale</a></li>
+                        <li><a href="#services">Gite e Tour</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Utile</h4>
+                    <ul>
+                        <li><a href="#pricing">Tariffe</a></li>
+                        <li><a href="#about">Chi Siamo</a></li>
+                        <li><a href="#fleet">La Nostra Flotta</a></li>
+                        <li><a href="#contact">Contatti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti Rapidi</h4>
+                    <ul>
+                        <li>📞 +39 XXX XXX XXXX</li>
+                        <li>📧 info@taximario.it</li>
+                        <li>🕐 H24 - 7 Giorni/7</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Taxi Mario. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Simulate form submission
+            alert(`Grazie ${name}!\n\nIl tuo messaggio è stato ricevuto.\nTi contatteremo presto all'indirizzo ${email}\n\nMessaggio: ${message}`);
+            
+            // Reset form
+            form.reset();
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
