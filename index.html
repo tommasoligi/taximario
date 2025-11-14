@@ -645,7 +645,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" onsubmit="handleSubmit(event)">
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <h3>Mandaci un Messaggio</h3>
                     <div class="form-group">
                         <label for="name">Nome *</label>
@@ -715,22 +715,6 @@
     </footer>
 
     <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Simulate form submission
-            alert(`Grazie ${name}!\n\nIl tuo messaggio è stato ricevuto.\nTi contatteremo presto all'indirizzo ${email}\n\nMessaggio: ${message}`);
-            
-            // Reset form
-            form.reset();
-        }
-
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
